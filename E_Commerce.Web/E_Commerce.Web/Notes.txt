@@ -1,0 +1,33 @@
+﻿                 ----------------------APIS----------------------
+API:Stand for Application Programming Interface 
+. it's contains many endpoints.
+EndsPoint:it's a url that represent to a specific funtion to exexute the logic in it.
+WebAppAPI:it's a container to different types of API
+
+***Types of APIs:
+<1>RESTful API:
+     .Stand for Representatial State Transfer
+     .It's an architecture style
+     .work on http request (get,post,delete,...)
+     .must determine http method to interact with function or resources which you wanna get
+     .every resource you wanna get can get by url 
+     .Return date in json or XML file
+     .Simple,common,understandable
+     .Can make cashing=> not every time i need data send request to DB, i can make cashing data local in case if i order it again.
+     
+<2>SOAP API:
+    .Stand for Simple Object Access Protocol
+    .it's a protocol (في حد ذاتها) not follow http protocol as it's protocol
+    .Return Date as XML File and send request as XML 
+    .hard in implmentation from RESTful API as XML
+    .More Security than RESTful API
+    .Less Performance as XML than RESTful API as JSON is faster.
+
+<3>GraphQL:
+   .More flexiable than RESTful API,SOAP API for client
+   .Single endpoint you interact with it 
+   .Front can determine formate returned
+   .it query language,client can fetch data, determine formate data by query send
+   .can work on Life time app as chatting app,dashboard
+   .More Complexity than RESTful API
+   .Dynamic app,real time data.

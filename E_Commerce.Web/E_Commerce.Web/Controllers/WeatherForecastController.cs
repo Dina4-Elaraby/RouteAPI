@@ -4,6 +4,7 @@ namespace E_Commerce.Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
+   
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
@@ -18,6 +19,7 @@ namespace E_Commerce.Web.Controllers
             _logger = logger;
         }
 
+        //BaseUrl/api/WeatherForecast
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
