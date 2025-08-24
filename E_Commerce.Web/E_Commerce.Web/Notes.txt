@@ -9,7 +9,7 @@ WebAppAPI:it's a container to different types of API
      .Stand for Representatial State Transfer
      .It's an architecture style
      .work on http request (get,post,delete,...)
-     .must determine http method to interact with function or resources which you wanna get
+     .must determine http method to interact with function or resources which you wanna get 
      .every resource you wanna get can get by url 
      .Return date in json or XML file
      .Simple,common,understandable
@@ -31,3 +31,21 @@ WebAppAPI:it's a container to different types of API
    .can work on Life time app as chatting app,dashboard
    .More Complexity than RESTful API
    .Dynamic app,real time data.
+
+   ---------------------Onion Layer Architecture--------------------------
+   1.Domain Layer [Core Layer]
+    .Contains Models[classes represented in database]
+    .Core of project not implemented[Repo Interface]
+    .Expceptions
+
+   2.Service Layer(M)
+    .contain two projects
+    2.1 Service Abstraction [not ineract with domain layer direct] deal with DTOs not Models
+    2.2 Service Implementation Deal with Models
+
+   3.
+    3.1 Persistence: DbContexts,Repo Implentation,Cashing
+    3.2 Presentation API Controllers:contains api controllers only, need service implementation=> get it by service abstraction
+
+   4.Web Application API:Interact with persistence,presentation,out resources
+   5.Shared[DTOs]
