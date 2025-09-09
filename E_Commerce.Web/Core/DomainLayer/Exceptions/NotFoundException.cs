@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Models
+namespace DomainLayer.Exceptions
 {
-    public class BaseEntity<Key>
+    public abstract class NotFoundException(string Message): Exception(Message)
     {
-        public Key Id { get; set; }
     }
 }

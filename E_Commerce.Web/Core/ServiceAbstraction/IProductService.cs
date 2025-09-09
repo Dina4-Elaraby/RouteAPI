@@ -1,4 +1,5 @@
 ﻿using Shared_DTOs_;
+using Shared_DTOs_.ProductDTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace ServiceAbstraction
     public interface IProductService
     {
         //get all products return ienumerable<productdto>
-        Task<IEnumerable<ProductDTO>> GetAllProductsAsync();
+        Task<PaginatedResult<ProductDTO>> GetAllProductsAsync(ProductQueryParams queryParams);
 
         //Get productById return productdto based on id
         Task<ProductDTO> GetProductByIdAsync(int Id);

@@ -1,19 +1,20 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ServiceAbstraction;
 using Shared_DTOs_;
+using Shared_DTOs_.ProductDTOs;
 
 namespace Presentation.Controllers
 {
-    [ApiController]
-    [Route("api/[controller]")] //BaseURL/api/ControllerName(Product)
-    public class ProductController(IServiceManager _serviceManager):ControllerBase
+    public class ProductController(IServiceManager _serviceManager): ApiBaseController
     {
         // four endpoints
 
         [HttpGet] // Get:BaseURL/api/Product/
-        public async Task<ActionResult<IEnumerable<ProductDTO>>> GetAllProduct()
+        public async Task<ActionResult<PaginatedResult<ProductDTO>>> GetAllProduct([FromQuery]ProductQueryParams queryParams)
         {
-            var products = await _serviceManager.productService.GetAllProductsAsync();
+            //type fromQuery because queryparams is complex datatype and this function without body
+            //and when this function bind on complex object check from body firstly so must type from query
+            var products = await _serviceManager.productService.GetAllProductsAsync(queryParams);
             return Ok(products);
         }
 

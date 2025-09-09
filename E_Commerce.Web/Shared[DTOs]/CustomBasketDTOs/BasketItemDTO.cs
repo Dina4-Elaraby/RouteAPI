@@ -1,19 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Shared_DTOs_
+namespace Shared_DTOs_.CustomBasketDTOs
 {
-    public class ProductDTO
+    public class BasketItemDTO
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public string Name { get; set; }
-        public string Desciption { get; set; }
         public string PictureUrl { get; set; }
+
+        [Range(1,double.MaxValue)]
         public decimal Price { get; set; }
-        public string BrandName { get; set; }
-        public string TypeName { get; set; }
+
+        [Range(1,100)]
+        public int Quantity { get; set; }
     }
 }
