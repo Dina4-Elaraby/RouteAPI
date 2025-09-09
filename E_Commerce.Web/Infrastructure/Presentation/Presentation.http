@@ -1,0 +1,19 @@
+﻿@Presentation_HostAddress = https://localhost:7124
+
+GET {{Presentation_HostAddress}}/api/Product
+
+###
+
+GET {{Presentation_HostAddress}}/api/Product/Brands
+
+###
+
+GET {{Presentation_HostAddress}}/api/Product/Types
+
+###
+
+
+@Id=5
+GET {{Presentation_HostAddress}}/api/Product/{{Id}}
+
+###
