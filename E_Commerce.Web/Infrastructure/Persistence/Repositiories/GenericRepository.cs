@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DomainLayer.Models;
+﻿using DomainLayer.Models;
 using DomainLayer.RepoInterface;
 using Microsoft.EntityFrameworkCore;
 using Persistence.Data;
@@ -18,16 +13,32 @@ namespace Persistence.Repositiories
             await _dbContext.Set<Entity>().AddAsync(entity);
         }
 
+        public async Task<int> CountAsync(ISpecification<Entity, Key> specifications)
+        {
+            return await SpecificationEvaluator.CreateQuery(InputQuery: _dbContext.Set<Entity>(), specifications).CountAsync();
+        }
+
+        public async Task<IEnumerable<Entity>> GetAllAsync(ISpecification<Entity, Key> specifications)
+        {
+            return await SpecificationEvaluator.CreateQuery(InputQuery: _dbContext.Set<Entity>(), specifications).ToListAsync();
+        }
+
         public async Task<IEnumerable<Entity>> GetAllAsync()
         {
-           return  await _dbContext.Set<Entity>().ToListAsync();
+           return await _dbContext.Set<Entity>().ToListAsync();
+        }
+
+        public async Task<Entity?> GetByIdAsync(ISpecification<Entity, Key> specifications)
+        {
+            return await SpecificationEvaluator.CreateQuery(InputQuery: _dbContext.Set<Entity>(), specifications).FirstOrDefaultAsync();
         }
 
         public async Task<Entity?> GetByIdAsync(Key Id)
         {
-           return  await _dbContext.Set<Entity>().FindAsync(Id);
+            return await _dbContext.Set<Entity>().FindAsync(Id);
         }
 
+        
         public void Remove(Entity entity)
         {
             _dbContext.Set<Entity>().Remove(entity);

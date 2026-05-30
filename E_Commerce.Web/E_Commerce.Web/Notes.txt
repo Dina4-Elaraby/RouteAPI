@@ -49,3 +49,15 @@ WebAppAPI:it's a container to different types of API
 
    4.Web Application API:Interact with persistence,presentation,out resources
    5.Shared[DTOs]
+
+            -----------------Specification-----------------
+   * 3ways to load data explicit data,eager loading data,lazy loading data
+   #Load Relation data: work on eager loading
+   ^^Specification Design Pattern:
+   solve problem of make query dynamic 
+   Problem: when get product must get brand and type it
+   _dbcontext.Products.where(p=>p.Id).Include(p=>p.productType).Include(p=>p.productBrand);
+   1.EntryPoint(Start query):_dbcontext.Products
+   2.where condition :where(p=>p.Id)
+   3.List Includes:Include(p=>p.productType).Include(p=>p.productBrand)
+

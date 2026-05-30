@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainLayer.Models
+namespace Services
 {
-    public class ProductBrand: BaseEntity<int>
+    public class AssemblyReference
     {
-        public string Name { get; set; }
     }
 }

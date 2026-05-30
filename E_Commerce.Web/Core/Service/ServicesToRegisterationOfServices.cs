@@ -9,6 +9,7 @@ namespace Services
         public static IServiceCollection RegisterServicesOfServices(this IServiceCollection Services)
         {
             //Services.AddAutoMapper(m => m.AddProfile(new ProductProfile()));
+            //Services.AddAutoMapper(typeof(Services.AssemblyReference).Assembly);
             //Services.AddAutoMapper(typeof(PictureURLResolver).Assembly);
 
             Services.AddAutoMapper(cfg =>

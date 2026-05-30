@@ -11,10 +11,12 @@ namespace DomainLayer.RepoInterface
     {
         //5 Signatures
         #region GetAll
+        Task<IEnumerable<Entity>> GetAllAsync(ISpecification<Entity, Key> specifications);
         Task<IEnumerable<Entity>> GetAllAsync();
         #endregion
 
         #region GetById 
+        Task<Entity?> GetByIdAsync(ISpecification<Entity,Key> specifications);
         Task<Entity?> GetByIdAsync(Key Id);
         #endregion
 
@@ -29,6 +31,8 @@ namespace DomainLayer.RepoInterface
         #region Remove
         void Remove(Entity entity);
         #endregion
+
+        Task<int> CountAsync(ISpecification<Entity, Key> specification);
         
     }
 }
