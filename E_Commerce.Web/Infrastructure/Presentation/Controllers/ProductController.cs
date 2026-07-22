@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ServiceAbstraction;
 using Shared_DTOs_;
 using Shared_DTOs_.ProductDTOs;
@@ -9,6 +10,7 @@ namespace Presentation.Controllers
     {
         // four endpoints
 
+        [Authorize]
         [HttpGet] // Get:BaseURL/api/Product/
         public async Task<ActionResult<PaginatedResult<ProductDTO>>> GetAllProduct([FromQuery]ProductQueryParams queryParams)
         {

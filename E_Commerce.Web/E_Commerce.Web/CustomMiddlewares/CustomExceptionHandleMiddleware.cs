@@ -1,7 +1,5 @@
-﻿using DomainLayer.Exceptions;
-using Microsoft.AspNetCore.Http;
+using DomainLayer.Exceptions;
 using Shared_DTOs_.ErrorModels;
-using System.Net;
 using System.Text.Json;
 
 namespace E_Commerce.Web.CustomMiddlewares
@@ -39,11 +37,20 @@ namespace E_Commerce.Web.CustomMiddlewares
         {
             #region Change Formate response
             #region //1.Set Status Code For Response: 
+            var Response = new ErrorToReturn
+            {
+                ErrorMessage = ex.Message,
+            };
             httpContext.Response.StatusCode = ex switch
             {
                 NotFoundException => StatusCodes.Status404NotFound,
+                UnauthorizedException =>StatusCodes.Status401Unauthorized,
+                //BadRequestException =>StatusCodes.Status400BadRequest,
+                BadRequestException badRequestException =>GetBadRequestErrors(badRequestException, Response),
                 _ => StatusCodes.Status500InternalServerError,
             };
+            httpContext.Response.StatusCode = Response.StatusCode;
+            await httpContext.Response.WriteAsJsonAsync(value: Response);
             //httpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             //httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
             #endregion
@@ -53,11 +60,11 @@ namespace E_Commerce.Web.CustomMiddlewares
             #endregion
 
             #region 3.Make Response Object
-            var Response = new ErrorToReturn()
-            {
-                StatusCode = httpContext.Response.StatusCode,
-                ErrorMessage = ex.Message
-            };
+            //var Response = new ErrorToReturn()
+            //{
+            //    StatusCode = httpContext.Response.StatusCode,
+            //    ErrorMessage = ex.Message
+            //};
             #endregion
 
             #region 4.Return Response Object As Json
@@ -68,6 +75,13 @@ namespace E_Commerce.Web.CustomMiddlewares
             //await httpContext.Response.WriteAsJsonAsync(Response);
             #endregion
             #endregion
+        }
+
+        private static int GetBadRequestErrors(BadRequestException badRequestException, ErrorToReturn response)
+        {
+            response.Errors = badRequestException.errors;
+            return StatusCodes.Status400BadRequest;
+
         }
 
         private static void HandleNotFoundEndPointAsync(HttpContext httpContext)

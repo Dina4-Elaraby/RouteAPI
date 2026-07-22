@@ -1,6 +1,6 @@
-﻿using DomainLayer.Models;
+using DomainLayer.Models;
 using DomainLayer.RepoInterface;
-using Persistence.Data;
+using Persistence.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
