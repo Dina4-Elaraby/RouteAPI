@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +10,8 @@ namespace ServiceAbstraction
     {
         public IProductService productService { get; }
         public ICustomBasketService CustomBasketService { get; }
+
+        public IAuthenticationService authenticationService { get; }
 
     }
 }

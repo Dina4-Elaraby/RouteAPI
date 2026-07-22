@@ -1,4 +1,4 @@
-﻿using DomainLayer.RepoInterface;
+using DomainLayer.RepoInterface;
 using E_Commerce.Web.CustomMiddlewares;
 
 namespace E_Commerce.Web
@@ -11,6 +11,7 @@ namespace E_Commerce.Web
             using var Scoop = app.Services.CreateScope();// open and close scope
             var objectDataSeeding = Scoop.ServiceProvider.GetRequiredService<IDataSeeding>();// create object of IDataSeeding
             await objectDataSeeding.DataSeedingAsync(); // function in class dataseeding
+            await objectDataSeeding.IdentityDataSeedAsync();
         }
 
         public static IApplicationBuilder UseCustomExceptionMiddleWare(this IApplicationBuilder app)

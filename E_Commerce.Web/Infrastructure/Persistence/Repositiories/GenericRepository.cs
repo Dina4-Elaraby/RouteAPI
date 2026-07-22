@@ -1,7 +1,7 @@
-﻿using DomainLayer.Models;
+using DomainLayer.Models;
 using DomainLayer.RepoInterface;
 using Microsoft.EntityFrameworkCore;
-using Persistence.Data;
+using Persistence.Identity;
 
 
 namespace Persistence.Repositiories

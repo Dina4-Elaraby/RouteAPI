@@ -1,12 +1,15 @@
 using E_Commerce.Web.Extensions;
 using Persistence;
 using Services;
+using StackExchange.Redis;
 namespace E_Commerce.Web
 {
     public class Program
     {
         public static async Task Main(string[] args)
         {
+           
+
             var builder = WebApplication.CreateBuilder(args);
 
             #region Add services to the container.
@@ -16,6 +19,7 @@ namespace E_Commerce.Web
             builder.Services.AddServiceOfPersistence(builder.Configuration);
             builder.Services.AddSwaggerServices();
             builder.Services.AddWebApplicationnSerices();
+            builder.Services.AddJWTService(builder.Configuration);
 
             var app = builder.Build();
 
@@ -37,6 +41,9 @@ namespace E_Commerce.Web
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
             app.MapControllers();
             #endregion 
             app.Run();
